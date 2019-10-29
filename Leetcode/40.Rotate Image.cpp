@@ -1,23 +1,20 @@
+//Runtime: 0 ms, faster than 100.00% of C++ online submissions for Rotate Image.
+//Memory Usage: 9 MB, less than 90.24% of C++ online submissions for Rotate Image.
+
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
-        vector <vector <int> > result;
-        for(int j=0; j<matrix.size();j++)
+        for(int i=0;i<matrix.size();i++)
         {
-            vector <int> tmp;
-            for(int i=matrix[j].size()-1; i>=0;i--)
+            for(int j=i+1;j<matrix[0].size();j++)
             {
-                tmp.push_back(matrix[i][j]);
+                swap(matrix[i][j],matrix[j][i]);
             }
-            result.push_back(tmp);
         }
-        for(int i=0; i<matrix.size();i++)
+    
+        for(int i=0;i<matrix.size();i++)
         {
-            vector <int> tmp;
-            for(int j=0; j<matrix[i].size();j++)
-            {
-                matrix[i][j]=result[i][j];
-            }
+            reverse(matrix[i].begin(),matrix[i].end());
         }
     }
 };
