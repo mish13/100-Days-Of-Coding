@@ -1,18 +1,20 @@
-//Runtime: 1288 ms, faster than 7.17% of C++ online submissions for Container With Most Water.
-//Memory Usage: 9.8 MB, less than 68.04% of C++ online submissions for Container With Most Water.
+//Runtime: 16 ms, faster than 96.20% of C++ online submissions for Container With Most Water.
+//Memory Usage: 9.9 MB, less than 59.79% of C++ online submissions for Container With Most Water.
 
 class Solution {
 public:
     int maxArea(vector<int>& height) {
         int mx = -1;
-        for(int i=0;i<height.size()-1;i++)
+        int l=0,r=height.size()-1;
+        while(l<r)
         {
-            for(int j=i+1;j<height.size();j++)
-            {
-                int tmp = min(height[i],height[j])*(j-i);
-                if(tmp>mx)
-                    mx = tmp;
-            }
+            int tmp = min(height[l],height[r])*(r-l);
+            if(tmp>mx)
+                mx = tmp;
+            if(height[l]<height[r])
+                l++;
+            else
+                r--;
         }
         return mx;
     }
